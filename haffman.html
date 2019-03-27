@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>test</title>
+</head>
+
+
+<body style="text-align:center">
+<div style="align-items: center">
+    <br>请在下面输入:
+    <br><br>
+    <input  style="padding:10px 200px" id="huffman" type="text" value=""><br><br><br>
+    点击确认:<button   style="width:50px;height: 20px;background: crimson" type="button" name="huffmanclick"  onclick="onbutton()">
+    </button><br><br><br>
+    <div id="output" style="text-align: center;font-size: 30px" >
+
+    </div>
+</div>
+<script>
+    function Huffman(str) {
+        // 需要编码的字符串
+        this.str = str;
+        // 键和频率映射表
+        this.keyCountMap = null;
+        // 编码和键的映射表
+        this.codeKeyMap = {};
+        // 键和编码的映射表
+        this.keyCodeMap = {};
+        // 哈夫曼树节点列表
+        this.nodeList = null;
+        // 哈夫曼树根节点
+        this.root = null;
+        // 哈夫曼编码后的01序列
+        this.code = null;
+    }
+
+    //通过输入的字符串建立键和频率的映射表
+    Huffman.prototype.cal = function cal() {
+        str = this.str;
+        var map = {};
+        var i = 0;
+        while(str[i]) {
+            map[str[i]] ? map[str[i]]++ : (map[str[i]] = 1);
+            i++;
+        }
+        this.keyCountMap = map;
+    }
+
+    //将键和频率的映射表转化为有序的节点列表
+    Huffman.prototype.sort = function sort() {
+        map = this.keyCountMap;
+        var result = [];
+        for (key in map) {
+            if(map.hasOwnProperty(key)) {
+                var obj = {
+                    key: key,
+                    val: map[key]
+                };
+                result.push(new Node(null, null, obj));
+            }
+        }
+        //排序
+        this.nodeList = result.sort(function(x,y){return x.data.val - y.data.val});
+    }
+
+
+    function Node(left, right, data) {
+        this.left = left;
+        this.right = right;
+        this.data = data;
+    }
+
+    //建树
+    Huffman.prototype.makeTree = function makeTree() {
+        var table = this.nodeList;
+        while(table.length > 1) {
+            //每次将最小的拿出来作为树的左右
+            var parentNode = new Node(table[0], table[1], {key: null, val: table[0]['data'].val + table[1]['data'].val});
+            table.splice(0,2);
+            //插入并重新排序
+            table.unshift(parentNode);
+            table.sort(function(x,y){return x.data.val - y.data.val});
+        }
+        this.root = table[0] || new Node();
+        return this.root;
+    }
+
+    //哈夫曼树转换为01编码
+    Huffman.prototype.traversal = function traversal(tree, code) {
+        if (tree.left !== null) {
+            traversal.call(this,tree.left, code + '0');
+        } else {
+            this.keyCodeMap[tree.data.key] = code;
+        }
+        if (tree.right !== null) {
+            traversal.call(this, tree.right,code + '1');
+        } else {
+            this.keyCodeMap[tree.data.key] = code;
+        }
+    }
+    //编码
+    Huffman.prototype.encode = function encode() {
+        this.cal();
+        this.sort();
+        var root = this.makeTree();
+        this.traversal(root, '');
+        var ret = this.keyCodeMap;
+        var i = 0;
+        var result = '';
+        var str = this.str;
+        while(str[i]) {
+            result += ret[str[i++]];
+        }
+        this.code = result;
+        return result
+    }
+    Huffman.prototype.reverseMap = function reverseMap() {
+        var ret = this.keyCodeMap;
+        var result = {};
+        for (key in ret) {
+            if(ret.hasOwnProperty(key)) {
+                result[ret[key]] = key;
+            }
+        }
+        this.codeKeyMap = result;
+        return result;
+    }
+
+    Huffman.prototype.decode = function decode() {
+        var i = 0;
+        var result = '';
+        var data = '';
+        var map = this.reverseMap();
+        var str = this.code;
+        while(str) {
+            result += str[i++];
+            if (result in map) {
+                data += map[result];
+                str = str.replace(new RegExp("^"+result),'');
+                result = '';
+                i = 0;
+            }
+        }
+        return data;
+    }
+    Huffman.prototype.encodeBase64 = function() {
+        try {
+            return btoa(this.code);
+        } catch(e) {
+            return '';
+        }
+    }
+
+    function getcodelong(ahuffman) {
+        var str='';
+        var codelong=0;
+        for(key in ahuffman.keyCountMap)
+        {
+            codelong+=ahuffman.keyCodeMap[key].length*ahuffman.keyCountMap[key];
+        }
+        str+="<br>哈夫曼的码长为"+codelong+"<br>";
+        return str;
+    }
+    
+    function showrate(ahuffman) {
+        var str='';
+        var alllong=0;
+        for(key in ahuffman.keyCountMap){
+            alllong+=ahuffman.keyCountMap[key];
+        }
+
+        for(key in ahuffman.keyCountMap){
+            var  rate = ahuffman.keyCountMap[key] / alllong;
+            rate = rate.toFixed(2);
+            str+=key+" 的出现次数是"+ahuffman.keyCountMap[key]+"   出现概率:"+rate+"<br>"
+        }
+        str+="<br>"
+        for(key in ahuffman.keyCodeMap){
+            str+=key+" 编码为"+ahuffman.keyCodeMap[key]+"<br>"
+        }
+        console.log(ahuffman);
+        console.log(str);
+        return str;
+
+    }
+    function onbutton(){
+        this.str=document.getElementById('huffman').value;
+        var huffman = new Huffman(str);
+        var output1="你的输入是:"+this.str+"<br>";
+        var output3="编码: "+huffman.encode(str)+"<br>解码: "+ huffman.decode();
+        var output2=showrate(huffman);
+        huffman.encodeBase64();
+        var getout=document.getElementById("output");
+        getout.innerHTML=getcodelong(huffman)+output1+output2+output3;
+    }
+
+
+
+</script>
+</body>
+</html>
