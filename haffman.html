@@ -2,21 +2,33 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>test</title>
+    <title>哈夫曼编码</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 
-
-<body style="text-align:center">
-<div style="align-items: center">
-    <br>请在下面输入:
-    <br><br>
-    <input  style="padding:10px 200px" id="huffman" type="text" value=""><br><br><br>
-    点击确认:<button   style="width:50px;height: 20px;background: crimson" type="button" name="huffmanclick"  onclick="onbutton()">
-    </button><br><br><br>
-    <div id="output" style="text-align: center;font-size: 30px" >
-
+<body>
+<div class="container">
+    <div style="margin-top: 100px; margin-bottom: 25px;" class="text-center">
+        <h2>
+            在线哈夫曼编码 <i style="font-size: 14px">V 1.0</i>
+        </h2>
+        <h4>
+            请在下面输入:
+        </h4>
+    </div>
+    <input type="text" id="huffman" class="form-control" placeholder="Text input">
+    <div style="margin-top: 25px; margin-bottom: 25px;" class="text-center">
+        <h4>
+            点击确认:
+        </h4>
+        <button type="button" class="btn btn-primary btn-lg" name="huffmanclick" onclick="onbutton()">确实</button>
+    </div>
+    <div id="output" style="font-size: 20px;margin-left: 35%">
     </div>
 </div>
+
 <script>
     function Huffman(str) {
         // 需要编码的字符串
@@ -40,7 +52,7 @@
         str = this.str;
         var map = {};
         var i = 0;
-        while(str[i]) {
+        while (str[i]) {
             map[str[i]] ? map[str[i]]++ : (map[str[i]] = 1);
             i++;
         }
@@ -52,7 +64,7 @@
         map = this.keyCountMap;
         var result = [];
         for (key in map) {
-            if(map.hasOwnProperty(key)) {
+            if (map.hasOwnProperty(key)) {
                 var obj = {
                     key: key,
                     val: map[key]
@@ -61,7 +73,9 @@
             }
         }
         //排序
-        this.nodeList = result.sort(function(x,y){return x.data.val - y.data.val});
+        this.nodeList = result.sort(function (x, y) {
+            return x.data.val - y.data.val
+        });
     }
 
 
@@ -74,13 +88,18 @@
     //建树
     Huffman.prototype.makeTree = function makeTree() {
         var table = this.nodeList;
-        while(table.length > 1) {
+        while (table.length > 1) {
             //每次将最小的拿出来作为树的左右
-            var parentNode = new Node(table[0], table[1], {key: null, val: table[0]['data'].val + table[1]['data'].val});
-            table.splice(0,2);
+            var parentNode = new Node(table[0], table[1], {
+                key: null,
+                val: table[0]['data'].val + table[1]['data'].val
+            });
+            table.splice(0, 2);
             //插入并重新排序
             table.unshift(parentNode);
-            table.sort(function(x,y){return x.data.val - y.data.val});
+            table.sort(function (x, y) {
+                return x.data.val - y.data.val
+            });
         }
         this.root = table[0] || new Node();
         return this.root;
@@ -89,12 +108,12 @@
     //哈夫曼树转换为01编码
     Huffman.prototype.traversal = function traversal(tree, code) {
         if (tree.left !== null) {
-            traversal.call(this,tree.left, code + '0');
+            traversal.call(this, tree.left, code + '0');
         } else {
             this.keyCodeMap[tree.data.key] = code;
         }
         if (tree.right !== null) {
-            traversal.call(this, tree.right,code + '1');
+            traversal.call(this, tree.right, code + '1');
         } else {
             this.keyCodeMap[tree.data.key] = code;
         }
@@ -109,7 +128,7 @@
         var i = 0;
         var result = '';
         var str = this.str;
-        while(str[i]) {
+        while (str[i]) {
             result += ret[str[i++]];
         }
         this.code = result;
@@ -119,7 +138,7 @@
         var ret = this.keyCodeMap;
         var result = {};
         for (key in ret) {
-            if(ret.hasOwnProperty(key)) {
+            if (ret.hasOwnProperty(key)) {
                 result[ret[key]] = key;
             }
         }
@@ -133,70 +152,70 @@
         var data = '';
         var map = this.reverseMap();
         var str = this.code;
-        while(str) {
+        while (str) {
             result += str[i++];
             if (result in map) {
                 data += map[result];
-                str = str.replace(new RegExp("^"+result),'');
+                str = str.replace(new RegExp("^" + result), '');
                 result = '';
                 i = 0;
             }
         }
         return data;
     }
-    Huffman.prototype.encodeBase64 = function() {
+    Huffman.prototype.encodeBase64 = function () {
         try {
             return btoa(this.code);
-        } catch(e) {
+        } catch (e) {
             return '';
         }
     }
 
     function getcodelong(ahuffman) {
-        var str='';
-        var codelong=0;
-        for(key in ahuffman.keyCountMap)
-        {
-            codelong+=ahuffman.keyCodeMap[key].length*ahuffman.keyCountMap[key];
+        var str = '';
+        var codelong = 0;
+        for (key in ahuffman.keyCountMap) {
+            codelong += ahuffman.keyCodeMap[key].length * ahuffman.keyCountMap[key];
         }
-        str+="<br>哈夫曼的码长为"+codelong+"<br>";
+        str += "<br>哈夫曼的码长为" + codelong + "<br>";
         return str;
     }
-    
+
     function showrate(ahuffman) {
-        var str='';
-        var alllong=0;
-        for(key in ahuffman.keyCountMap){
-            alllong+=ahuffman.keyCountMap[key];
+        var str = '';
+        var alllong = 0;
+        for (key in ahuffman.keyCountMap) {
+            alllong += ahuffman.keyCountMap[key];
         }
 
-        for(key in ahuffman.keyCountMap){
-            var  rate = ahuffman.keyCountMap[key] / alllong;
+        for (key in ahuffman.keyCountMap) {
+            var rate = ahuffman.keyCountMap[key] / alllong;
             rate = rate.toFixed(2);
-            str+=key+" 的出现次数是"+ahuffman.keyCountMap[key]+"   出现概率:"+rate+"<br>"
+            str += key + " 的出现次数是" + ahuffman.keyCountMap[key] + "   出现概率:" + rate + "<br>"
         }
-        str+="<br>"
-        for(key in ahuffman.keyCodeMap){
-            str+=key+" 编码为"+ahuffman.keyCodeMap[key]+"<br>"
+        str += "<br>"
+        for (key in ahuffman.keyCodeMap) {
+            str += key + " 编码为" + ahuffman.keyCodeMap[key] + "<br>"
         }
         console.log(ahuffman);
         console.log(str);
         return str;
 
     }
-    function onbutton(){
-        this.str=document.getElementById('huffman').value;
-        var huffman = new Huffman(str);
-        var output1="你的输入是:"+this.str+"<br>";
-        var output3="编码: "+huffman.encode(str)+"<br>解码: "+ huffman.decode();
-        var output2=showrate(huffman);
-        huffman.encodeBase64();
-        var getout=document.getElementById("output");
-        getout.innerHTML=getcodelong(huffman)+output1+output2+output3;
-    }
 
+    function onbutton() {
+        this.str = document.getElementById('huffman').value;
+        var huffman = new Huffman(str);
+        var output1 = "你的输入是:" + this.str + "<br>";
+        var output3 = "编码: " + huffman.encode(str) + "<br>解码: " + huffman.decode();
+        var output2 = showrate(huffman);
+        huffman.encodeBase64();
+        var getout = document.getElementById("output");
+        getout.innerHTML = getcodelong(huffman) + output1 + output2 + output3;
+    }
 
 
 </script>
 </body>
+
 </html>
