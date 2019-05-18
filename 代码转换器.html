@@ -1,34 +1,49 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>GB2312 UNICODE转换工具</title>
-    <div align=center>
-        <center>
-            <table border=0 cellpadding=0 cellspacing=0 style="border-collapse: collapse" width=600 id=AutoNumber1
-                   height=26>
-                <tr>
-                    <td width=100% height=26>
-                        <p align=center><font size=5 color=#FF0000>代码转换器</font></p>
-                        <p>使用方法：</p>
-                        <p>　　1.在下面的文本框中输入中文文字，按“TO UNICODE”，即可将其转化为UNICODE字符。</p>
-                        <p>　　2.然后把相关代码复制粘贴到改名卡的自定义内容栏，点确认，显示为中文即为成功改中文</p>
-                        <p>　　3.再按“TO GB2312”，即可将其还原为简体中文。</p>
-                        <p>　　注意！一般中文最多为两个，超过两个可能会显示其他东西，可以中英合璧，中文俄文混合双打，自行发挥想象~</p>
+    <title>CSGO_GB2312_UNICODE_转换工具</title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
 
-                </tr>
-            </table>
-        </center>
+<body>
+<div class="container">
+    <div style="margin-top: 100px; margin-bottom: 25px;" class="text-center">
+        <h2>
+            代码转换器 <i style="font-size: 14px">V 1.0</i>
+        </h2>
+
     </div>
-    <p align=center>
-<textarea cols=82 rows=10 id=code>
-</textarea></p>
-    <p align=center>
+    <div class="text-center" style="font-size: 16px"><i>使用方法：</i></div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10 col-sm-12 col-xs-12">
 
-        <input type=button onclick=encode(code,this) value="TO UNICODE">
-        <script>
-            var mode = "zhuan";
+            <p>　　1.在下面的文本框中输入中文文字，按“TO UNICODE”，即可将其转化为UNICODE字符。</p>
+            <p>　　2.然后把相关代码复制粘贴到改名卡的自定义内容栏，点确认，显示为中文即为成功改中文</p>
+            <p>　　3.再按“TO GB2312”，即可将其还原为简体中文。</p>
+            <p>　<b>　注意！一般中文最多为两个，超过两个可能会显示其他东西，可以中英合璧，中文俄文混合双打，自行发挥想象~ </b></p>
+        </div>
+        <div class="col-md-2">
+        </div>
 
-            function encode(obj, btn) {
+    </div>
+    <div class="text-center">
+        <input type="text" class="form-control" id="code" placeholder="Text input" style="margin:25px 0 25px 0">
+        <!--        <textarea class="text-info"  style="height: 50px ;width: 500px"></textarea><br>-->
+        <input class="btn-primary btn-lg" type=button onclick="encode(code,this)" value="TO UNICODE">
+
+    </div>
+    <script>
+        var mode = "zhuan";
+
+        function encode(obj, btn) {
+            if (document.getElementById("code").value === "") {
+                alert("请输入");
+            } else {
                 if (mode == "zhuan") {
                     obj.value = obj.value.replace(/[^\u0000-\u00FF]/g, function ($0) {
                         return escape($0).replace(/(%u)(\w{4})/gi, "&#x$2;")
@@ -41,7 +56,9 @@
                     mode = "zhuan";
                 }
             }
-        </script>
-    </p>
-</head>
+        }
+    </script>
+</div>
+
+</body>
 </html>
