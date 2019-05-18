@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Tryit Editor v1.0</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="HtmlEditor/trystyle.css">
+
+    <script type="text/javascript">
+        function submitTryit() {
+            var text = document.getElementById("textareaCode").value;
+            var ifr = document.createElement("iframe");
+            ifr.setAttribute("frameborder", "0");
+            ifr.setAttribute("id", "iframeResult");
+            document.getElementById("iframewrapper").innerHTML = "";
+            document.getElementById("iframewrapper").appendChild(ifr);
+            var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+            ifrw.document.open();
+            ifrw.document.write(text);
+            ifrw.document.close();
+            //23.02.2016: contentEditable is set to true, to fix text-selection (bug) in firefox.
+            //(and back to false to prevent the content from being editable)
+            //(To reproduce the error: Select text in the result window with, and without, the contentEditable statements below.)
+            if (ifrw.document.body && !ifrw.document.body.isContentEditable) {
+                ifrw.document.body.contentEditable = true;
+                ifrw.document.body.contentEditable = false;
+            }
+        }
+    </script>
+
+
+</head>
+<body>
+
+
+<div class="container   horizontal">
+    <div class="textareacontainer   horizontal">
+        <div class="textarea   horizontal">
+            <div style="overflow:auto;">
+                <div class="headerText" style="color: #2aabd2">Tryit Editor <p style="font-size: 12px;display: inline">
+                    v1.0</p></div>
+                <button class="seeResult" type="button" onclick="submitTryit()">See Result »</button>
+            </div>
+            <div class="textareawrapper">
+        <textarea autocomplete="off" class="code_input" id="textareaCode" wrap="logical" spellcheck="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Page Title&lt;/title&gt;
+
+&lt;script&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;Hi&lt;/h1&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</textarea>
+                <form autocomplete="off" style="margin:0px;display:none;">
+                    <input type="hidden" name="code" id="code">
+                    <input type="hidden" id="bt" name="bt">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="iframecontainer   horizontal">
+        <div class="iframe   horizontal">
+            <div style="overflow:auto;">
+                <div class="headerText">Result:</div>
+            </div>
+            <div id="iframewrapper" class="iframewrapper">
+                <iframe frameborder="0" id="iframeResult"  src="HtmlEditor/saved_resource.html">
+
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    submitTryit()
+</script>
+
+</body>
+</html>
