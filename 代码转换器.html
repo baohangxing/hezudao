@@ -1,40 +1,47 @@
 <html>
 <head>
-<title>GB2312 UNICODE×ª»»¹¤¾ß</title>
-<div align=center>
-<center>
-<table border=0 cellpadding=0 cellspacing=0 style="border-collapse: collapse" width=600 id=AutoNumber1 height=26>
-  <tr>
-    <td width=100% height=26>
-    <p align=center><font size=5 color=#FF0000>´úÂë×ª»»Æ÷</font></p>
-    <p>Ê¹ÓÃ·½·¨£º</p>
-    <p>¡¡¡¡1.ÔÚÏÂÃæµÄÎÄ±¾¿òÖÐÊäÈëÖÐÎÄÎÄ×Ö£¬°´¡°TO UNICODE¡±£¬¼´¿É½«Æä×ª»¯ÎªUNICODE×Ö·û¡£</p>
-    <p>¡¡¡¡2.È»ºó°ÑÏà¹Ø´úÂë¸´ÖÆÕ³Ìùµ½¸ÄÃû¿¨µÄ×Ô¶¨ÒåÄÚÈÝÀ¸£¬µãÈ·ÈÏ£¬ÏÔÊ¾ÎªÖÐÎÄ¼´Îª³É¹¦¸ÄÖÐÎÄ</p>
-    <p>¡¡¡¡3.ÔÙ°´¡°TO GB2312¡±£¬¼´¿É½«Æä»¹Ô­Îª¼òÌåÖÐÎÄ¡£</p>
-    <p>¡¡¡¡×¢Òâ£¡Ò»°ãÖÐÎÄ×î¶àÎªÁ½¸ö£¬³¬¹ýÁ½¸ö¿ÉÄÜ»áÏÔÊ¾ÆäËû¶«Î÷£¬¿ÉÒÔÖÐÓ¢ºÏèµ£¬ÖÐÎÄ¶íÎÄ»ìºÏË«´ò£¬×ÔÐÐ·¢»ÓÏëÏó~</p>
-	
-  </tr>
-</table>
-</center>
-</div>
-<p align=center>
-<textarea cols=82 rows=10 id=code>
-</textarea> </p>
-<p align=center>
+    <meta charset="utf-8">
+    <title>GB2312 UNICODEè½¬æ¢å·¥å…·</title>
+    <div align=center>
+        <center>
+            <table border=0 cellpadding=0 cellspacing=0 style="border-collapse: collapse" width=600 id=AutoNumber1
+                   height=26>
+                <tr>
+                    <td width=100% height=26>
+                        <p align=center><font size=5 color=#FF0000>ä»£ç è½¬æ¢å™¨</font></p>
+                        <p>ä½¿ç”¨æ–¹æ³•ï¼š</p>
+                        <p>ã€€ã€€1.åœ¨ä¸‹é¢çš„æ–‡æœ¬æ¡†ä¸­è¾“å…¥ä¸­æ–‡æ–‡å­—ï¼ŒæŒ‰â€œTO UNICODEâ€ï¼Œå³å¯å°†å…¶è½¬åŒ–ä¸ºUNICODEå­—ç¬¦ã€‚</p>
+                        <p>ã€€ã€€2.ç„¶åŽæŠŠç›¸å…³ä»£ç å¤åˆ¶ç²˜è´´åˆ°æ”¹åå¡çš„è‡ªå®šä¹‰å†…å®¹æ ï¼Œç‚¹ç¡®è®¤ï¼Œæ˜¾ç¤ºä¸ºä¸­æ–‡å³ä¸ºæˆåŠŸæ”¹ä¸­æ–‡</p>
+                        <p>ã€€ã€€3.å†æŒ‰â€œTO GB2312â€ï¼Œå³å¯å°†å…¶è¿˜åŽŸä¸ºç®€ä½“ä¸­æ–‡ã€‚</p>
+                        <p>ã€€ã€€æ³¨æ„ï¼ä¸€èˆ¬ä¸­æ–‡æœ€å¤šä¸ºä¸¤ä¸ªï¼Œè¶…è¿‡ä¸¤ä¸ªå¯èƒ½ä¼šæ˜¾ç¤ºå…¶ä»–ä¸œè¥¿ï¼Œå¯ä»¥ä¸­è‹±åˆç’§ï¼Œä¸­æ–‡ä¿„æ–‡æ··åˆåŒæ‰“ï¼Œè‡ªè¡Œå‘æŒ¥æƒ³è±¡~</p>
 
-<input type=button onclick=encode(code,this) value="TO UNICODE">
-<script>
-var mode="zhuan";
-function encode(obj,btn){
-   if(mode=="zhuan"){
-       obj.value=obj.value.replace(/[^\u0000-\u00FF]/g,function($0){return escape($0).replace(/(%u)(\w{4})/gi,"&#x$2;")});
-       btn.value="TO GB2312";
-       mode="huan";
-   }else{
-       obj.value=unescape(obj.value.replace(/&#x/g,'%u').replace(/;/g,''));
-       btn.value="TO UNICODE";
-       mode="zhuan";
-   }
-}
-</script></p>
-</body></html>
+                </tr>
+            </table>
+        </center>
+    </div>
+    <p align=center>
+<textarea cols=82 rows=10 id=code>
+</textarea></p>
+    <p align=center>
+
+        <input type=button onclick=encode(code,this) value="TO UNICODE">
+        <script>
+            var mode = "zhuan";
+
+            function encode(obj, btn) {
+                if (mode == "zhuan") {
+                    obj.value = obj.value.replace(/[^\u0000-\u00FF]/g, function ($0) {
+                        return escape($0).replace(/(%u)(\w{4})/gi, "&#x$2;")
+                    });
+                    btn.value = "TO GB2312";
+                    mode = "huan";
+                } else {
+                    obj.value = unescape(obj.value.replace(/&#x/g, '%u').replace(/;/g, ''));
+                    btn.value = "TO UNICODE";
+                    mode = "zhuan";
+                }
+            }
+        </script>
+    </p>
+</head>
+</html>

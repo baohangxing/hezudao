@@ -1,212 +1,228 @@
 <!DOCTYPE html>
-<!-- saved from url=(0081)https://www.quanzhanketang.com/html/tryhtml_default.html?filename=tryhtml_default -->
-<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Tryit Editor v2.7</title>
-<meta name="viewport" content="width=device-width">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./Tryit Editor v2.7_files/trystyle.css">
-<!--[if lt IE 8]>
-<style>
-.textareacontainer, .iframecontainer {width:48%;}
-.textarea, .iframe {height:800px;}
-#textareaCode, #iframeResult {height:700px;}
-.menu img {display:none;}
-</style>
-<![endif]-->
+<html lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Tryit Editor v2.7</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="HtmlEditor/trystyle.css">
 
+    <script type="text/javascript">
+        function submitTryit() {
+            var text = document.getElementById("textareaCode").value;
+            var ifr = document.createElement("iframe");
+            ifr.setAttribute("frameborder", "0");
+            ifr.setAttribute("id", "iframeResult");
+            document.getElementById("iframewrapper").innerHTML = "";
+            document.getElementById("iframewrapper").appendChild(ifr);
+            var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
+            ifrw.document.open();
+            ifrw.document.write(text);
+            ifrw.document.close();
+            //23.02.2016: contentEditable is set to true, to fix text-selection (bug) in firefox.
+            //(and back to false to prevent the content from being editable)
+            //(To reproduce the error: Select text in the result window with, and without, the contentEditable statements below.)
+            if (ifrw.document.body && !ifrw.document.body.isContentEditable) {
+                ifrw.document.body.contentEditable = true;
+                ifrw.document.body.contentEditable = false;
+            }
+        }
 
-<script src="./Tryit Editor v2.7_files/hm.js.下载"></script><script type="text/javascript">
-function submitTryit() {
-  var text = document.getElementById("textareaCode").value;
-  var ifr = document.createElement("iframe");
-  ifr.setAttribute("frameborder", "0");
-  ifr.setAttribute("id", "iframeResult");  
-  document.getElementById("iframewrapper").innerHTML = "";
-  document.getElementById("iframewrapper").appendChild(ifr);
-  var ifrw = (ifr.contentWindow) ? ifr.contentWindow : (ifr.contentDocument.document) ? ifr.contentDocument.document : ifr.contentDocument;
-  ifrw.document.open();
-  ifrw.document.write(text);  
-  ifrw.document.close();
-  //23.02.2016: contentEditable is set to true, to fix text-selection (bug) in firefox.
-  //(and back to false to prevent the content from being editable)
-  //(To reproduce the error: Select text in the result window with, and without, the contentEditable statements below.)  
-  if (ifrw.document.body && !ifrw.document.body.isContentEditable) {
-    ifrw.document.body.contentEditable = true;
-    ifrw.document.body.contentEditable = false;
-  }
-}
-//horizontal = false;
-function restack(horizontal) {
-    var tc, ic, t, i, c, f, height, flt, width;
+        //horizontal = false;
+        function restack(horizontal) {
+            var tc, ic, t, i, c, f, height, flt, width;
 //    horizontal = !horizontal;
-    tc = document.getElementsByClassName("textareacontainer")[0];
-    ic = document.getElementsByClassName("iframecontainer")[0];
-    t = document.getElementsByClassName("textarea")[0];
-    i = document.getElementsByClassName("iframe")[0];
-    c = document.getElementsByClassName("container")[0];    
-    f = document.getElementsByClassName("footerText")[0];
-    tc.className = tc.className.replace("horizontal", "");
-    ic.className = ic.className.replace("horizontal", "");        
-    t.className = t.className.replace("horizontal", "");        
-    i.className = i.className.replace("horizontal", "");        
-    c.className = c.className.replace("horizontal", "");                        
-    f.className = f.className.replace("horizontal", "");        
-    if (horizontal) {
-        tc.className = tc.className + " horizontal";
-        ic.className = ic.className + " horizontal";        
-        t.className = t.className + " horizontal";        
-        i.className = i.className + " horizontal";                
-        c.className = c.className + " horizontal";                
-        f.className = f.className + " horizontal";                                
-    }
-}
-</script>
-<style>
-.headerText {
-  line-height:2.2;
-}
-.textareawrapper {
-  height:93%;
-}
-.iframewrapper {
-  height:93%;
-}
-.textareacontainer,.iframecontainer{
-  transition:all ease 0.2s;
-}
-.textareacontainer.horizontal,.iframecontainer.horizontal{
-  height:48%;
-  float:none;
-  width:100%;
-}
-.textarea.horizontal{
-  height:98%;
-  padding-left:0.75%;
-}
-.iframe.horizontal{
-  padding-right:0.75%;
-  padding-bottom:0;
-}
-.container.horizontal{
-  min-width:260px;
-  min-height:550px;
-}
-.textarea, .iframe {
-  padding-top:0;
-}
-.textarea {
-  padding-left:1.5%;
-  padding-right:0.75%;  
-}
-.iframe {
-  padding-left:0.75%;
-  padding-right:1.5%;  
-}
-.footerText.horizontal{
-  display:none;
-}
-.seeResult {
-  line-height:2.2; 
-}
-.stackcontainer {
-    padding-top:8px;
-}
-.stackcontainer input {
-    width:16px;
-    height:16px;
-}
-@media only screen and (max-device-width: 768px) {
-    .headerText  {
-        line-height:1.5;
-    }
-    .seeResult {
-        font-size:12px; 
-        line-height:1.5; 
-    }
-    .textareawrapper, .iframewrapper {
-        height:97%;
-    }
-    @media screen and (orientation:portrait) {
-        .textareawrapper {
-            height:100%;
+            tc = document.getElementsByClassName("textareacontainer")[0];
+            ic = document.getElementsByClassName("iframecontainer")[0];
+            t = document.getElementsByClassName("textarea")[0];
+            i = document.getElementsByClassName("iframe")[0];
+            c = document.getElementsByClassName("container")[0];
+            f = document.getElementsByClassName("footerText")[0];
+            tc.className = tc.className.replace("horizontal", "");
+            ic.className = ic.className.replace("horizontal", "");
+            t.className = t.className.replace("horizontal", "");
+            i.className = i.className.replace("horizontal", "");
+            c.className = c.className.replace("horizontal", "");
+            f.className = f.className.replace("horizontal", "");
+            if (horizontal) {
+                tc.className = tc.className + " horizontal";
+                ic.className = ic.className + " horizontal";
+                t.className = t.className + " horizontal";
+                i.className = i.className + " horizontal";
+                c.className = c.className + " horizontal";
+                f.className = f.className + " horizontal";
+            }
         }
-        .iframewrapper {
-            height:98%;
+    </script>
+    <style>
+        .headerText {
+            line-height: 2.2;
         }
-        .textarea, .iframe {
-            padding-left:1%;
-            padding-right:0;            
-        }
-    }
-}
-</style>
 
-<script>
-var _hmt = _hmt || [];
-(function() {
-var hm = document.createElement("script");
-hm.src = "//hm.baidu.com/hm.js?73c27e26f610eb3c9f3feb0c75b03925";
-var s = document.getElementsByTagName("script")[0];
-s.parentNode.insertBefore(hm, s);
-})();
-</script>
+        .textareawrapper {
+            height: 93%;
+        }
+
+        .iframewrapper {
+            height: 93%;
+        }
+
+        .textareacontainer, .iframecontainer {
+            transition: all ease 0.2s;
+        }
+
+        .textareacontainer.horizontal, .iframecontainer.horizontal {
+            height: 48%;
+            float: none;
+            width: 100%;
+        }
+
+        .textarea.horizontal {
+            height: 98%;
+            padding-left: 0.75%;
+        }
+
+        .iframe.horizontal {
+            padding-right: 0.75%;
+            padding-bottom: 0;
+        }
+
+        .container.horizontal {
+            min-width: 260px;
+            min-height: 550px;
+        }
+
+        .textarea, .iframe {
+            padding-top: 0;
+        }
+
+        .textarea {
+            padding-left: 1.5%;
+            padding-right: 0.75%;
+        }
+
+        .iframe {
+            padding-left: 0.75%;
+            padding-right: 1.5%;
+        }
+
+        .footerText.horizontal {
+            display: none;
+        }
+
+        .seeResult {
+            line-height: 2.2;
+        }
+
+        .stackcontainer {
+            padding-top: 8px;
+        }
+
+        .stackcontainer input {
+            width: 16px;
+            height: 16px;
+        }
+
+        @media only screen and (max-device-width: 768px) {
+            .headerText {
+                line-height: 1.5;
+            }
+
+            .seeResult {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .textareawrapper, .iframewrapper {
+                height: 97%;
+            }
+
+            @media screen and (orientation: portrait) {
+                .textareawrapper {
+                    height: 100%;
+                }
+
+                .iframewrapper {
+                    height: 98%;
+                }
+
+                .textarea, .iframe {
+                    padding-left: 1%;
+                    padding-right: 0;
+                }
+            }
+        }
+    </style>
+
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?73c27e26f610eb3c9f3feb0c75b03925";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
 
 
 <div class="container   horizontal">
-  <div class="textareacontainer   horizontal">
-    <div class="textarea   horizontal">
-      <div style="overflow:auto;">
-        <div class="headerText">Edit This Code:</div>
-        <button class="seeResult" type="button" onclick="submitTryit()">See Result »</button>
-      </div>
-      <div class="textareawrapper">
+    <div class="textareacontainer   horizontal">
+        <div class="textarea   horizontal">
+            <div style="overflow:auto;">
+                <div class="headerText">Edit This Code:</div>
+                <button class="seeResult" type="button" onclick="submitTryit()">See Result »</button>
+            </div>
+            <div class="textareawrapper">
         <textarea autocomplete="off" class="code_input" id="textareaCode" wrap="logical" spellcheck="false">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
 &lt;title&gt;Page Title&lt;/title&gt;
 
 &lt;script&gt;
-var _hmt = _hmt || [];
-(function() {
-var hm = document.createElement("script");
-hm.src = "//hm.baidu.com/hm.js?73c27e26f610eb3c9f3feb0c75b03925";
-var s = document.getElementsByTagName("script")[0];
-s.parentNode.insertBefore(hm, s);
-})();
 &lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
 
-&lt;h1&gt;This is a Heading&lt;/h1&gt;
-&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;h1&gt;Hi&lt;/h1&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;
 </textarea>
-          <form autocomplete="off" style="margin:0px;display:none;">
-            <input type="hidden" name="code" id="code">
-            <input type="hidden" id="bt" name="bt">
-          </form>
-       </div>
+                <form autocomplete="off" style="margin:0px;display:none;">
+                    <input type="hidden" name="code" id="code">
+                    <input type="hidden" id="bt" name="bt">
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="iframecontainer   horizontal">
-    <div class="iframe   horizontal">
-      <div style="overflow:auto;">
-        <div class="headerText">Result:</div>
-        <div class="stackcontainer">
-          <label for="stackhorizontally" title="Horizontally"><img src="./Tryit Editor v2.7_files/stack_horizontally.png"></label><input id="stackhorizontally" type="radio" onclick="restack(true)" name="stack" title="Horizontally">        
-          <label for="stackvertically" title="Vertically"><img src="./Tryit Editor v2.7_files/stack_vertically.png" style="margin-right:10px;"></label><input id="stackvertically" type="radio" onclick="restack(false)" name="stack" title="Vertically" checked="">
-        </div>        
-      </div>
-      <div id="iframewrapper" class="iframewrapper"><iframe frameborder="0" id="iframeResult" src="./Tryit Editor v2.7_files/saved_resource.html"></iframe></div>
+    <div class="iframecontainer   horizontal">
+        <div class="iframe   horizontal">
+            <div style="overflow:auto;">
+                <div class="headerText">Result:</div>
+                <div class="stackcontainer">
+                    <label for="stackhorizontally" title="Horizontally"><img
+                            src="HtmlEditor/stack_horizontally.png"></label><input id="stackhorizontally" type="radio"
+                                                                                   onclick="restack(true)" name="stack"
+                                                                                   title="Horizontally">
+                    <label for="stackvertically" title="Vertically"><img src="HtmlEditor/stack_vertically.png"
+                                                                         style="margin-right:10px;"></label><input
+                        id="stackvertically" type="radio" onclick="restack(false)" name="stack" title="Vertically"
+                        checked="">
+                </div>
+            </div>
+            <div id="iframewrapper" class="iframewrapper">
+                <iframe frameborder="0" id="iframeResult" src="HtmlEditor/saved_resource.html">
+
+                </iframe>
+            </div>
+        </div>
     </div>
-  </div>      
 </div>
 <script>
-submitTryit()
+    submitTryit()
 </script>
 
-</body></html>
+</body>
+</html>
