@@ -7,7 +7,7 @@
 * [哈夫曼编码](https://baohangxing.github.io/hezudao/haffman.html)
 ![](image/hafuman_show.png)
 
-* [在线js](https://baohangxing.github.io/hezudao/Tryit_Editor_v2.7.html)
+* [在线js](https://baohangxing.github.io/hezudao/Tryit_Editor_v1.0.html)
 ![](image/tryiteditor.png)
 >问题：1.没有代码提示 2.不是实时更新需要点击。
 
