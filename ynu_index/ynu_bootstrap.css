@@ -314,14 +314,13 @@ ul {
     font-size: 14px;
     color: #FFF;
 }
-
-.ynu_footer_pic {
-    width: 460px;
-    height: 100px;
-    margin: 10px 0 10px 10px;
-    display: block;
-    float: right;
+@media screen and (max-width: 500px){
+    .ynu_footer_pic {
+        padding-left: 20px;
+        padding-top: 244px;
+    }
 }
+
 
 .ynu_footer_pic img {
     margin-right: 2px;
@@ -337,7 +336,7 @@ ul {
     }
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px)and (min-width: 500px){
 
     .ynu_footer_pic {
         width: 460px;
