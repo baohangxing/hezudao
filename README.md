@@ -14,3 +14,6 @@
 * [csgo中文代码转换器](https://baohangxing.github.io/hezudao/代码转换器.html)
 ![](image/csgocodechange.png)
 
+* [YNU-INDEX](https://baohangxing.github.io/hezudao/ynu_index/bootstrap.html)
+![](image/ynu_index.png)
+>问题很多细节没处理好其实  need more time
