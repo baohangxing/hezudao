@@ -50,7 +50,7 @@ sale_price,quantity FROM xorder,book,lientem,client WHERE xorder.clientemail = c
 lientem.xorderid = xorder.id AND lientem.bookisbn = book.isbn AND state = "oh" 
 ORDER BY xorder.id , title;
 
-![](learn_sql/19.png)
+![](19.png)
 
 ## 为订购ISBN为014025448X或0670894370的每个订单列出订单id、订单日期客户email、名、姓以及订单中包含的每种书的ISBN、标题、售价、数量。以订单日期、标题为序。
 SELECT xorder.id,order_date,xorder.clientemail,client.fname,client.Iname,book.isbn,title,
@@ -58,7 +58,7 @@ sale_price,quantity FROM xorder,book,lientem,client WHERE  lientem.xorderid = xo
 AND xorder.clientemail = client.email AND (book.isbn = '014025448X' or book.isbn = '0670894370')
 AND lientem.bookisbn = book.isbn ORDER BY xorder.id , title;
 
-![](learn_sql/20.png)
+![](20.png)
 
 
 ## 列出由Nationwide保险的每个病人的名、姓、邮政编码，以病人的姓为序。
