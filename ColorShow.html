@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>颜色转换工具</title>
+    <scripttype="text/javascript"src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+<div id='showColor'>
+<div class="container" >
+    <div  class="text-center titleFrist">
+        <h2>
+                颜色转换工具 <i>V 1.0</i>
+        </h2>
+
+    </div>
+    <div class="text-center" class="useWay"><i>使用方法：</i></div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-10 col-sm-12 col-xs-12">
+            <p>　　在下面的文本框中输入颜色，按“转换”。</p>
+        </div>
+        <div class="col-md-2">
+        </div>
+
+    </div>
+    <div class="text-center">
+        <input type="text" class="form-control" id="code" placeholder="Color input" style="margin:25px 0 25px 0">
+        <input class="btn-primary btn-lg" type=button onclick="color()" value="转换">
+
+    </div>
+    <script>
+        function color() {
+            if (document.getElementById("code").value === "") {
+                alert("请输入Color");
+            } else {
+                var colorCode = document.getElementById("code").value;
+                if( /#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.exec(colorCode)){
+                    document.getElementById("showColor").style.backgroundColor = colorCode;
+                    document.getElementById("showColor").style.color = "#"+ColorReverse(colorCode);
+                }else{
+                    alert("请正确输入Color");
+                }
+                
+                
+            }
+        }
+        function ColorReverse(OldColorValue){
+            var OldColorValue="0x"+OldColorValue.replace(/#/g,"");
+            var str="000000"+(0xFFFFFF-OldColorValue).toString(16);
+            return str.substring(str.length-6,str.length);
+        }
+    </script>
+    
+</div>
+</div>
+</body>
+
+
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    html,body{
+        height: 100%;
+        width: 100%;
+    }
+    #showColor{
+        position:absolute;
+		left: 0;
+		top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: aliceblue
+    }
+    .titleFrist{
+        margin-top: 100px; margin-bottom: 25px;
+        
+    }
+    .titleFrist i{
+        font-size: 14px;
+    }
+    .useWay{
+        font-size: 16px
+    }
+</style>
+</html>
