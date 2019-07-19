@@ -1,4 +1,4 @@
-## 一些独立的网页集合
+## 一些静态网页集合和一些资源的存放
 
 这是一个很多网页的集合，多是可以展示的前端的一些东西，目的是用于不断学习的遇到的感兴趣的练习或是难点的整理。
 
@@ -17,3 +17,7 @@
 * [YNU-INDEX](https://baohangxing.github.io/hezudao/ynu_index/bootstrap.html)
 ![](image/ynu_index.png)
 >问题很多细节没处理好其实  need more time
+
+* [ColorShow](https://baohangxing.github.io/hezudao/ColorShow.html)
+![](image/ColorShow.png)
+
