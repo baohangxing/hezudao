@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="22ecfdeb-ec27-4a49-a9ac-7c58e13f77e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ynu_index/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ynu_index/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="22ecfdeb-ec27-4a49-a9ac-7c58e13f77e4" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -96,9 +93,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="59" />
-    <option name="y" value="18" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="210" />
+    <option name="y" value="156" />
     <option name="width" value="1597" />
     <option name="height" value="855" />
   </component>
@@ -188,11 +185,12 @@
       <workItem from="1558171672716" duration="28000" />
       <workItem from="1558172823469" duration="7000" />
       <workItem from="1558534653354" duration="220000" />
+      <workItem from="1558535144839" duration="4000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14629000" />
+    <option name="totallyTimeSpent" value="14633000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -204,9 +202,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="210" y="156" width="1597" height="855" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24951892" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
