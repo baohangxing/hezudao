@@ -1,0 +1,267 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+ul,p{
+    margin: 0;
+}
+img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+*{
+    box-sizing: border-box;
+}
+
+/* 搜索栏 */
+.searchCnt{
+    background-color: #ffffff;
+    padding: 10px;
+}
+.searchBox{
+    background-color: #e3e4e6;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 5px 0;
+}
+.searchBox img{
+    width: 16px;
+    height: 18px;
+    margin-right: 5px;
+}
+.searchBox p{
+    font-size: 14px;
+    color: #636363;
+}
+
+/* 按钮菜单 */
+.menuCnt{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+.menuCnt .menuItem{
+    width: 20%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    
+}
+.menuItem img{
+    width: 80%;
+    margin-bottom:5px; 
+}
+.menuItem p{
+    font-size: 14px;
+}
+
+/* 热门话题 */
+.hotCnt{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-top: 1px solid #dddddd;
+    padding: 0 10px;
+}
+.hotItem{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #dddddd;
+    padding:10px;
+    align-items: center;
+}
+.hotItem img{
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+.hotCnt .hotItem:nth-child(3),
+.hotCnt .hotItem:nth-child(4){
+    border-bottom: none;
+}
+.hotItem p{
+    flex: 1;
+    border-right: 1px solid #dddddd;
+}
+.hotCnt .hotItem:nth-child(even) p{
+    border-right: none;
+}
+
+/* 微博之夜 */
+.weiboCnt{
+    display: flex;
+    flex-direction: column;
+    border-top: 10px solid #f2f2f2;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-left: 3px solid #ff8201;
+    margin: 5px 0;
+    align-items: baseline;
+}
+.titleMain{
+    color: #636363;
+    font-size: 16px;
+}
+.title2{
+    font-size: 14px;
+    color: #939393;
+}
+.weiboGroup{
+    width: 100%;
+    overflow-x: hidden;
+    padding: 0 10px;
+    padding-bottom: 10px;
+    
+}
+.weboBox{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    
+}
+.groupItem{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    width: 45%;
+    flex-shrink: 0;
+}
+.groupItem p{
+    border: 1px solid #dddddd;
+    border-top: none;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* tab栏 */
+
+.tabCnt{
+    border-top: 10px solid #f2f2f2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.tabCnt p{
+    padding: 10px 0px;
+    margin: 0 20px;
+    color: #939393;
+    font-size: 16px;
+}
+.tabCnt .active{
+    border-bottom: 2px solid #fe6a00;
+    color: #000000;
+    font-weight: bold;
+}
+
+.mark{
+    background-color: #f2f2f2;
+    font-size: 12px;
+    padding: 10px;
+    color: #636363;
+}
+
+/* 微博正文 */
+/* 用户信息与关注 */
+.weboList{
+    display: flex;
+    flex-direction: column;
+}
+.weiboRow{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 10px solid #f2f2f2;
+}
+.userInfoCnt{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+}
+.userInfoBox{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.userHpBox{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+.userInfoGroup{
+    display: flex;
+    flex-direction: column;   
+}
+.userName{
+    font-size: 16px;
+    color: #fe6a00;
+    margin-bottom: 5px;
+}
+.timeBox{
+    display: flex;
+    flex-direction: row;
+}
+.time{
+    font-size: 12px;
+    color: #939393;
+    margin-right: 5px;
+}
+.source{
+    font-size: 12px;
+    color: #557ca7;
+}
+.guanzhuBtn{
+    background-color: rgba(0, 0, 0, 0);
+    border:1px solid #fe6a00;
+    color: #fe6a00;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+/* 正文 */
+.weiboDetail{
+    padding: 0 10px;
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.6;
+}
+/* 微博操作 */
+.weiboOp{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    
+}
+.weiboOpItem{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-top: 1px solid #dddddd;
+    padding-top: 10px;
+    align-items: center;
+}
+.weiboOpItem img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.weiboOpItem p{
+    font-size: 14px;
+    color: #939393;
+}
