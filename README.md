@@ -25,4 +25,6 @@
 * [ColorShow](https://baohangxing.github.io/hezudao/ColorShow.html)
 ![](image/ColorShow.png)
 
+* [天地癞子生成器](https://baohangxing.github.io/hezudao/天地癞子生成器.html)
+
 

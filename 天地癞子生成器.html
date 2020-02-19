@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>
+            天地癞子生成器
+        </title>
+    </head>
+    <style>
+        html, body{
+            padding: 0;
+            margin: 0;
+            background-color: black;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .haeder{
+            margin: 40px;
+            color: cornsilk;
+            font-size: 50px;
+            font-weight: 800;
+        }
+        #tianlaizi, #dilaizi{
+            height: 300px;
+            width: 300px;
+            margin: 50px;
+            border-radius: 50%;
+            background-color: burlywood;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: black;
+            font-size: 60px;
+            font-weight: 600;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <div class="haeder">天地癞子生成器</div>
+            <div id="tianlaizi">天癞子</div>
+            <div id="dilaizi">地癞子</div>
+        </div>
+    </body>
+    <script>
+        let list = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
+        let tianlaizi = '天癞子'
+        let dilaizi = '地癞子'
+        function getLaizi(){
+            let a = Math.floor(Math.random() * 13)
+            return list[a]
+        }
+
+        function getTianLaizi(){
+            if(tianlaizi == '天癞子'){
+                tianlaizi = getLaizi()
+                document.getElementById("tianlaizi").style.fontSize = '150px'
+            }else{
+                tianlaizi = '天癞子'
+                document.getElementById("tianlaizi").style.fontSize = '60px'
+            }
+            document.getElementById("tianlaizi").innerHTML = tianlaizi
+        }
+
+        function getDiLaizi(){
+            if(dilaizi == '地癞子'){
+                do{
+                    dilaizi = getLaizi()
+                }
+                while(dilaizi == tianlaizi)
+                document.getElementById("dilaizi").innerHTML = dilaizi
+                document.getElementById("dilaizi").style.fontSize = '150px'
+            }else{
+                dilaizi = '地癞子'
+                document.getElementById("dilaizi").style.fontSize = '60px'
+            }
+            document.getElementById("dilaizi").innerHTML = dilaizi
+        }
+
+        let tianDiv = document.getElementById("tianlaizi")
+        tianDiv.onclick = getTianLaizi
+        let diDiv = document.getElementById("dilaizi")
+        diDiv.onclick = getDiLaizi
+    </script>
+</html>
